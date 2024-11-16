@@ -1,0 +1,15 @@
+// // Function to generate all possible pairs from "0" to "90" and their reverse order
+// const generateTargetPairs = () => {
+//   const targetPairs = [];
+//   for (let i = 0; i <= 90; i++) {
+//     for (let j = i + 1; j <= 90; j++) {
+//       targetPairs.push([i.toString(), j.toString()]); // Pair (e.g., ["7", "8"])
+//       targetPairs.push([j.toString(), i.toString()]); // Reverse pair (e.g., ["8", "7"])
+//     }
+//   }
+//   return targetPairs;
+// };
+
+// // Usage
+// const targetPairs = generateTargetPairs();
+// console.log(targetPairs); // Logs all pairs from ["0", "1"] to ["89", "90"] and their reverse.
