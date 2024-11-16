@@ -10,7 +10,7 @@ import { LoadingScreen } from "@/components/ui/loading";
 
 import targetPairs from "@/lib/targetPairs";
 
-export function PermuteCombinatorics() {
+export function ProductPermuteCombinatorics() {
   const [numbers, setNumbers] = useState(Array(12).fill(""))
   const [permuteN, setPermuteN] = useState(2)
   const [chooseN, setChooseN] = useState(2)
@@ -70,11 +70,11 @@ export function PermuteCombinatorics() {
 
     let results: number[] = [];
 
-    // Calculate the "choose n" combinations and return the sums modulus 90
-    const combinations = (arr: number[], n: number, start = 0, currentCombo: number[] = []) => {
+  // Function to calculate the "choose n" multiplications and return modulus 90
+  const combinations = (arr: number[], n: number, start = 0, currentCombo: number[] = []) => {
       if (currentCombo.length === n) {
-        const sum = currentCombo.reduce((acc, val) => acc + val, 0);
-        results.push(sum % 90);
+        const product = currentCombo.reduce((acc, val) => acc * val, 1);
+        results.push(product % 90);
         return;
       }
 
@@ -101,7 +101,7 @@ export function PermuteCombinatorics() {
     // Set the results
     setModResults(modResults);
 
-    confirm(`Choose ${chooseN} generated and calculated with mod 90`);
+    confirm(`Product Choose ${chooseN} generated and calculated with mod 90`);
   };
 
 
@@ -179,10 +179,10 @@ export function PermuteCombinatorics() {
       {loading && <LoadingScreen />}
       <Card className="">
         <CardHeader>
-          <CardTitle className="text-center">Combinatorics and Permutation Tool</CardTitle>
+          <CardTitle className="text-center">Product Combinatorics and Permutation Tool</CardTitle>
         </CardHeader>
         <CardContent>
-        <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-col-7 lg:grid-col-15  gap-2 mb-4">
+          <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-col-7 lg:grid-col-15  gap-2 mb-4">
             {numbers.map((num, index) => (
               <Input
                 className="border border-gray-500 px-1 text-center"
@@ -195,7 +195,6 @@ export function PermuteCombinatorics() {
             ))}
           </div>
 
-
           <div className="flex flex-col items-center space-y-4">
             <div className="flex items-center space-x-2">
               <Input
@@ -206,17 +205,15 @@ export function PermuteCombinatorics() {
                 onChange={(e) => setPermuteN(parseInt(e.target.value))}
                 className="w-20"
               />
-              <Button onClick={handlePermute}>Permute {permuteN}</Button>
+              <Button className="bg-blue-600" onClick={handlePermute}>Permute {permuteN}</Button>
             </div>
 
-            <div className="w-full bg-gray-900 text-white text-center text-2xl py-3">Permuted Numbers</div>
+            <div className="w-full bg-blue-600 text-white text-center text-2xl py-3">Permuted Numbers</div>
             <Suspense fallback={<LoadingScreen />}>
               {permutedResult.length > 0 && (
                 <Table>
                   <TableCaption>Permuted Numbers</TableCaption>
                   <TableBody>
-                  {/* {Array.from({ length: Math.ceil(permutedResult.length / 15) }).map((_, rowIndex) => ( */}
-
                     {permutedResult.map((row, rowIndex) => (
                       <TableRow key={rowIndex}>
                         {row.map((cell, cellIndex) => (
@@ -237,10 +234,10 @@ export function PermuteCombinatorics() {
                 onChange={(e) => setChooseN(parseInt(e.target.value))}
                 className="w-20"
               />
-              <Button onClick={handleCalculate}>Calculate Choose {chooseN}</Button>
+              <Button className="bg-blue-600" onClick={handleCalculate}>Calculate Choose {chooseN}</Button>
             </div>
 
-            <div className="w-full bg-gray-900 text-2xl text-white text-center py-3">Combination Numbers</div>
+            <div className="w-full bg-blue-600 text-2xl text-white text-center py-3">Combination Numbers</div>
 
             <Suspense fallback={<LoadingScreen />}>
               <Table ref={tbl}>
@@ -266,12 +263,12 @@ export function PermuteCombinatorics() {
             </Suspense>
 
             <div className="flex gap-2">
-              <Button onClick={handleRandomize}>Randomize</Button>
+              <Button className="bg-blue-600" onClick={handleRandomize}>Randomize</Button>
 
-              <Button onClick={handleResultCheck}>Check Results</Button>
+              <Button className="bg-blue-600" onClick={handleResultCheck}>Check Results</Button>
             </div>
 
-            <div className="w-full bg-gray-900 text-white text-center py-3">Analytics Data</div>
+            <div className="w-full bg-blue-600 text-white text-center py-3">Analytics Data</div>
             {analyticsData.length > 0 && (
               <div className="w-full">
                 <Table>
