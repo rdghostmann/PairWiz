@@ -178,7 +178,7 @@ export function PermuteCombinatorics() {
           <CardTitle className="text-center">Combinatorics and Permutation Tool</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-15 gap-2 mb-4">
+          <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-col-7 lg:grid-col-15  gap-2 mb-4">
             {numbers.map((num, index) => (
               <Input
                 className="border border-gray-500 px-1 text-center"
@@ -210,6 +210,8 @@ export function PermuteCombinatorics() {
                 <Table>
                   <TableCaption>Permuted Numbers</TableCaption>
                   <TableBody>
+                  {/* {Array.from({ length: Math.ceil(permutedResult.length / 15) }).map((_, rowIndex) => ( */}
+
                     {permutedResult.map((row, rowIndex) => (
                       <TableRow key={rowIndex}>
                         {row.map((cell, cellIndex) => (
@@ -239,7 +241,8 @@ export function PermuteCombinatorics() {
               <Table ref={tbl}>
                 <TableBody>
                   {Array.from({ length: Math.ceil(modResults.length / 15) }).map((_, rowIndex) => (
-                    <TableRow key={rowIndex}>
+                   
+                   <TableRow key={rowIndex}>
                       {modResults
                         .slice(rowIndex * 15, (rowIndex + 1) * 15)
                         .map((result, colIndex) => (
